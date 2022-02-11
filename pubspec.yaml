@@ -30,10 +30,17 @@ dependencies:
   google_fonts: ^2.3.1
 
 dev_dependencies:
+  flutter_native_splash: ^2.0.2
   flutter_test:
     sdk: flutter
+  
+  
 
   flutter_lints: ^1.0.0
+
+flutter_native_splash:
+  image: assets/images/logo.png
+  color: "#fafafa"
 
 flutter:
   uses-material-design: true

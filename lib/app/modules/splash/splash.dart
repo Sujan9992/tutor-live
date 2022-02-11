@@ -18,9 +18,7 @@ class SplashPageScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(
-                        child: Image.asset("assets/images/logo.png"),
-                        width: 250,
-                        height: 250,
+                        child: Text('Welcome'),
                       ),
                     ],
                   ),
