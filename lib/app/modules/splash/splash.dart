@@ -16,7 +16,7 @@ class SplashPageScreen extends StatelessWidget {
                   tag: "logo",
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
+                    children: const [
                       SizedBox(
                         child: Text('Welcome'),
                       ),

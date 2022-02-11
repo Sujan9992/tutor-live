@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tutor_live/app/modules/splash/splash.dart';
+import 'package:tutor_live/routes/pages.dart';
 //import 'package:tutor_live/core/constants/colors.dart';
 
 void main() {
@@ -31,7 +31,8 @@ class MyApp extends StatelessWidget {
           secondary: Colors.red.shade400,
         ),
       ),
-      home: const SplashPageScreen(),
+      getPages: AppPages.pages,
+      initialRoute: Routes.onboard,
     );
   }
 }

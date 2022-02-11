@@ -25,9 +25,10 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.2
-  lottie: ^1.2.1
   get: ^4.6.1
   google_fonts: ^2.3.1
+  introduction_screen: ^2.1.0
+  shared_preferences: ^2.0.13
 
 dev_dependencies:
   flutter_native_splash: ^2.0.2
@@ -47,6 +48,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/lottie/
 
   # fonts:
   #   - family: Schyler
