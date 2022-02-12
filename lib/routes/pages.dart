@@ -14,6 +14,6 @@ abstract class AppPages {
     GetPage(name: Routes.welcome, page: () => const WelcomePage()),
     GetPage(name: Routes.signup, page: () => SignupPage()),
     GetPage(name: Routes.login, page: () => LoginPage()),
-    GetPage(name: Routes.home, page: () => const HomePage()),
+    GetPage(name: Routes.home, page: () => HomePage()),
   ];
 }
