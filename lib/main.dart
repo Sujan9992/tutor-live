@@ -26,9 +26,6 @@ class MyApp extends StatelessWidget {
   final bool? toLoad;
   @override
   Widget build(BuildContext context) {
-    print('-----------');
-    print(toLoad);
-    print('-----------');
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Tutor Live',
@@ -42,7 +39,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       getPages: AppPages.pages,
-      initialRoute: (toLoad!) ? Routes.onboard : Routes.home,
+      initialRoute: (toLoad!) ? Routes.onboard : Routes.welcome,
     );
   }
 }
