@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         title: Image.asset(
           'assets/images/logo.png',
-          height: Get.height * 0.15,
+          height: Get.height * 0.2,
         ),
         centerTitle: true,
         elevation: 0,
@@ -72,9 +72,16 @@ class HomePage extends StatelessWidget {
       body: Container(
         height: Get.height - Get.height * 0.12 - kBottomNavigationBarHeight,
         width: Get.width,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.only(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.shade300,
+              offset: const Offset(0.0, 1.0), //(x,y)
+              blurRadius: 6.0,
+            ),
+          ],
+          borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(30),
             topRight: Radius.circular(30),
           ),
