@@ -2,23 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tutor_live/routes/pages.dart';
 //import 'package:tutor_live/core/constants/colors.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  var boolValue = prefs.getBool('isFirst');
+  boolValue ??= true;
   // reset the system's orientation to portrait
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) {
-    runApp(const MyApp());
+    runApp(MyApp(
+      toLoad: boolValue,
+    ));
   });
-  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key, this.toLoad}) : super(key: key);
+
+  final bool? toLoad;
   @override
   Widget build(BuildContext context) {
+    print('-----------');
+    print(toLoad);
+    print('-----------');
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Tutor Live',
@@ -32,7 +42,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       getPages: AppPages.pages,
-      initialRoute: Routes.onboard,
+      initialRoute: (toLoad!) ? Routes.onboard : Routes.home,
     );
   }
 }
