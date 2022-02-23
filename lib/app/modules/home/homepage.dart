@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tutor_live/app/modules/courses/course_frame.dart';
+import 'package:tutor_live/app/modules/global_widgets/drawer.dart';
 import 'package:tutor_live/app/modules/home/controller/homepage_controller.dart';
 import 'package:tutor_live/app/modules/home/widgets/home_frame.dart';
 import 'package:tutor_live/app/modules/notification/notification_frame.dart';
@@ -18,6 +19,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
+        iconTheme: Theme.of(context).iconTheme,
         toolbarHeight: Get.height * 0.12,
         backgroundColor: Colors.transparent,
         title: Image.asset('assets/images/logo.png', height: Get.height * 0.2),
@@ -39,40 +41,51 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: Obx(() => BottomNavigationBar(
-            onTap: controller.onBottomNavigationBarChanged,
-            currentIndex: controller.tabpageIndex.value,
-            backgroundColor: Colors.white,
-            elevation: 0,
-            selectedItemColor: Colors.red,
-            unselectedItemColor: Colors.black,
-            selectedLabelStyle:
-                TextStyle(fontFamily: GoogleFonts.suezOne().fontFamily),
-            unselectedLabelStyle: TextStyle(
-                fontFamily: GoogleFonts.sunflower().fontFamily,
-                fontWeight: FontWeight.w100),
-            type: BottomNavigationBarType.fixed,
-            items: const [
-              BottomNavigationBarItem(
-                label: 'Home',
-                icon: Icon(Icons.home_outlined),
-                activeIcon: Icon(Icons.home_rounded),
-              ),
-              BottomNavigationBarItem(
-                label: 'Courses',
-                icon: Icon(Icons.video_library_outlined),
-                activeIcon: Icon(Icons.video_library_rounded),
-              ),
-              BottomNavigationBarItem(
-                  label: 'Notifications',
-                  icon: Icon(Icons.notifications_outlined),
-                  activeIcon: Icon(Icons.notifications_rounded)),
-              BottomNavigationBarItem(
-                  label: 'Profile',
-                  icon: Icon(Icons.person_outline),
-                  activeIcon: Icon(Icons.person_rounded)),
-            ],
-          )),
+      bottomNavigationBar: Obx(
+        () => BottomNavigationBar(
+          onTap: controller.onBottomNavigationBarChanged,
+          currentIndex: controller.tabpageIndex.value,
+          backgroundColor: Colors.white,
+          elevation: 0,
+          selectedItemColor: Colors.red,
+          unselectedItemColor: Colors.black,
+          selectedLabelStyle:
+              TextStyle(fontFamily: GoogleFonts.suezOne().fontFamily),
+          unselectedLabelStyle: TextStyle(
+              fontFamily: GoogleFonts.sunflower().fontFamily,
+              fontWeight: FontWeight.w100),
+          type: BottomNavigationBarType.fixed,
+          items: const [
+            BottomNavigationBarItem(
+              label: 'Home',
+              icon: Icon(Icons.home_outlined),
+              activeIcon: Icon(Icons.home_rounded),
+            ),
+            BottomNavigationBarItem(
+              label: 'Courses',
+              icon: Icon(Icons.video_library_outlined),
+              activeIcon: Icon(Icons.video_library_rounded),
+            ),
+            BottomNavigationBarItem(
+                label: 'Notifications',
+                icon: Icon(Icons.notifications_outlined),
+                activeIcon: Icon(Icons.notifications_rounded)),
+            BottomNavigationBarItem(
+                label: 'Profile',
+                icon: Icon(Icons.person_outline),
+                activeIcon: Icon(Icons.person_rounded)),
+          ],
+        ),
+      ),
+      drawer: const Drawer(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
+        ),
+        child: DrawerMenu(),
+      ),
       body: Container(
         height: Get.height - Get.height * 0.12 - kBottomNavigationBarHeight,
         width: Get.width,

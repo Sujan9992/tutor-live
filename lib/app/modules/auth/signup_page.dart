@@ -4,13 +4,44 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../routes/pages.dart';
 
-class SignupPage extends StatelessWidget {
-  SignupPage({Key? key}) : super(key: key);
+class SignupPage extends StatefulWidget {
+  const SignupPage({Key? key}) : super(key: key);
+
+  @override
+  State<SignupPage> createState() => _SignupPageState();
+}
+
+class _SignupPageState extends State<SignupPage> {
   final TextEditingController _fullnameController = TextEditingController();
+
   final TextEditingController _emailController = TextEditingController();
+
   final TextEditingController _passwordController = TextEditingController();
+
   final TextEditingController _confirmPasswordController =
       TextEditingController();
+
+  late String _password;
+  final _registrationFormKey = GlobalKey<FormState>();
+
+  void _register() {
+    var _isValid = _registrationFormKey.currentState!.validate();
+    if (_isValid) {
+      Get.offAllNamed(Routes.home);
+    } else {
+      return;
+    }
+    _registrationFormKey.currentState!.save();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _fullnameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,113 +60,155 @@ class SignupPage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
-                height: Get.height * 0.08,
-                width: Get.width * 0.95,
-                child: TextFormField(
-                  controller: _fullnameController,
-                  decoration: InputDecoration(
-                    labelText: "Full name",
-                    labelStyle: GoogleFonts.poppins(
-                      textStyle: const TextStyle(
-                        color: Colors.red,
-                        fontSize: 25,
-                        fontWeight: FontWeight.w300,
-                      ),
+              Form(
+                  key: _registrationFormKey,
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      left: Get.width * 0.05,
+                      right: Get.width * 0.05,
+                      top: Get.height * 0.02,
                     ),
-                    suffixIcon: const Icon(Icons.person, color: Colors.red),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.red.shade100),
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 12),
+                        SizedBox(
+                          height: Get.height * 0.08,
+                          child: TextFormField(
+                            validator: (value) => value!.isEmpty
+                                ? 'Please enter your full name'
+                                : null,
+                            controller: _fullnameController,
+                            decoration: InputDecoration(
+                              hintText: 'Full Name',
+                              hintStyle: GoogleFonts.poppins(
+                                textStyle: const TextStyle(
+                                  color: Colors.red,
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                ),
+                              ),
+                              suffixIcon:
+                                  const Icon(Icons.person, color: Colors.red),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.red.shade100),
+                              ),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.red.shade100),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        SizedBox(
+                          height: Get.height * 0.08,
+                          child: TextFormField(
+                            validator: (value) => value!.isEmpty
+                                ? 'Please enter your email'
+                                : null,
+                            controller: _emailController,
+                            decoration: InputDecoration(
+                              hintText: 'Email',
+                              hintStyle: GoogleFonts.poppins(
+                                textStyle: const TextStyle(
+                                  color: Colors.red,
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                ),
+                              ),
+                              suffixIcon: const Icon(Icons.email_outlined,
+                                  color: Colors.red),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.red.shade100),
+                              ),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.red.shade100),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        SizedBox(
+                          height: Get.height * 0.08,
+                          child: TextFormField(
+                            validator: ((value) => value!.isEmpty
+                                ? 'Please enter your password'
+                                : null),
+                            controller: _passwordController,
+                            obscureText: true,
+                            decoration: InputDecoration(
+                              hintText: 'Password',
+                              hintStyle: GoogleFonts.poppins(
+                                textStyle: const TextStyle(
+                                  color: Colors.red,
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                ),
+                              ),
+                              suffixIcon: const Icon(Icons.password_outlined,
+                                  color: Colors.red),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.red.shade100),
+                              ),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.red.shade100),
+                              ),
+                            ),
+                            onChanged: (value) {
+                              setState(() {
+                                _password = value;
+                              });
+                              _password = value;
+                            },
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        SizedBox(
+                          height: Get.height * 0.08,
+                          child: TextFormField(
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Please confirm your password';
+                              } else if (value != _password) {
+                                return 'Passwords do not match';
+                              }
+                              return null;
+                            },
+                            obscureText: true,
+                            controller: _confirmPasswordController,
+                            decoration: InputDecoration(
+                              hintText: 'Re-type Password',
+                              hintStyle: GoogleFonts.poppins(
+                                textStyle: const TextStyle(
+                                  color: Colors.red,
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                ),
+                              ),
+                              suffixIcon: const Icon(Icons.password_outlined,
+                                  color: Colors.red),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.red.shade100),
+                              ),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.red.shade100),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                      ],
                     ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.red.shade100),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 8),
-              SizedBox(
-                height: Get.height * 0.08,
-                width: Get.width * 0.95,
-                child: TextFormField(
-                  controller: _emailController,
-                  decoration: InputDecoration(
-                    labelText: "Email",
-                    labelStyle: GoogleFonts.poppins(
-                      textStyle: const TextStyle(
-                        color: Colors.red,
-                        fontSize: 25,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
-                    suffixIcon:
-                        const Icon(Icons.email_outlined, color: Colors.red),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.red.shade100),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.red.shade100),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 8),
-              SizedBox(
-                height: Get.height * 0.08,
-                width: Get.width * 0.95,
-                child: TextFormField(
-                  controller: _passwordController,
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    labelText: "Password",
-                    labelStyle: GoogleFonts.poppins(
-                      textStyle: const TextStyle(
-                        color: Colors.red,
-                        fontSize: 25,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
-                    suffixIcon:
-                        const Icon(Icons.password_outlined, color: Colors.red),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.red.shade100),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.red.shade100),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 8),
-              SizedBox(
-                height: Get.height * 0.08,
-                width: Get.width * 0.95,
-                child: TextFormField(
-                  obscureText: true,
-                  controller: _confirmPasswordController,
-                  decoration: InputDecoration(
-                    labelText: "Re-type password",
-                    labelStyle: GoogleFonts.poppins(
-                      textStyle: const TextStyle(
-                        color: Colors.red,
-                        fontSize: 25,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
-                    suffixIcon:
-                        const Icon(Icons.password_outlined, color: Colors.red),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.red.shade100),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.red.shade100),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 8),
+                  )),
               TextButton(
-                onPressed: () => Get.offAllNamed(Routes.home),
+                onPressed: _register,
                 child: const Text(
                   'Signup',
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.w300),

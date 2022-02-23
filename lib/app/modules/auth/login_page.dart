@@ -3,11 +3,36 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tutor_live/routes/pages.dart';
 
-class LoginPage extends StatelessWidget {
-  LoginPage({Key? key}) : super(key: key);
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
+
   final TextEditingController _passwordController = TextEditingController();
+
+  final _loginFormKey = GlobalKey<FormState>();
+
+  void _login() {
+    var _isValid = _loginFormKey.currentState!.validate();
+    if (_isValid) {
+      Get.offAllNamed(Routes.home);
+    } else {
+      return;
+    }
+    _loginFormKey.currentState!.save();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,61 +45,80 @@ class LoginPage extends StatelessWidget {
               SizedBox(
                 child: Image.asset("assets/lottie/4.gif"),
               ),
-              SizedBox(
-                height: Get.height * 0.08,
-                width: Get.width * 0.95,
-                child: TextFormField(
-                  controller: _emailController,
-                  decoration: InputDecoration(
-                    labelText: "Email",
-                    labelStyle: GoogleFonts.poppins(
-                      textStyle: const TextStyle(
-                        color: Colors.red,
-                        fontSize: 25,
-                        fontWeight: FontWeight.w300,
-                      ),
+              Form(
+                  key: _loginFormKey,
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      left: Get.width * 0.05,
+                      right: Get.width * 0.05,
+                      top: Get.height * 0.02,
                     ),
-                    suffixIcon:
-                        const Icon(Icons.email_outlined, color: Colors.red),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.red.shade100),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: Get.height * 0.08,
+                          child: TextFormField(
+                            validator: (value) =>
+                                value!.isEmpty ? 'Email is required' : null,
+                            controller: _emailController,
+                            decoration: InputDecoration(
+                              hintText: "Email",
+                              hintStyle: GoogleFonts.poppins(
+                                textStyle: const TextStyle(
+                                  color: Colors.red,
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                ),
+                              ),
+                              suffixIcon: const Icon(Icons.email_outlined,
+                                  color: Colors.red),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.red.shade100),
+                              ),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.red.shade100),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 15),
+                        SizedBox(
+                          height: Get.height * 0.08,
+                          child: TextFormField(
+                            validator: (value) =>
+                                value!.isEmpty ? 'Password is required' : null,
+                            controller: _passwordController,
+                            obscureText: true,
+                            decoration: InputDecoration(
+                              hintText: "Password",
+                              hintStyle: GoogleFonts.poppins(
+                                textStyle: const TextStyle(
+                                  color: Colors.red,
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                ),
+                              ),
+                              suffixIcon: const Icon(Icons.password_outlined,
+                                  color: Colors.red),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.red.shade100),
+                              ),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.red.shade100),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.red.shade100),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 15),
-              SizedBox(
-                height: Get.height * 0.08,
-                width: Get.width * 0.95,
-                child: TextFormField(
-                  controller: _passwordController,
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    labelText: "Password",
-                    labelStyle: GoogleFonts.poppins(
-                      textStyle: const TextStyle(
-                        color: Colors.red,
-                        fontSize: 25,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
-                    suffixIcon:
-                        const Icon(Icons.password_outlined, color: Colors.red),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.red.shade100),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.red.shade100),
-                    ),
-                  ),
-                ),
-              ),
+                  )),
               const SizedBox(height: 15),
               TextButton(
-                onPressed: () => Get.offAllNamed(Routes.home),
+                onPressed: _login,
                 child: const Text(
                   'Login',
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.w300),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../data/models/tutor_live_user.dart';
+
 class HomePageController extends GetxController {
   var tabpageIndex = 0.obs;
   var isOnMain = true.obs;
@@ -9,6 +11,7 @@ class HomePageController extends GetxController {
   var weekTabIndex = 0.obs;
   var isFetching = false.obs;
   var needChangeNavigator = true;
+  TutorLiveUser? mainUser;
 
   PageController pageController = PageController();
 

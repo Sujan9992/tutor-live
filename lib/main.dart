@@ -37,6 +37,9 @@ class MyApp extends StatelessWidget {
         ).copyWith(
           secondary: Colors.red.shade400,
         ),
+        iconTheme: const IconThemeData(
+          color: Colors.black,
+        ),
       ),
       getPages: AppPages.pages,
       initialRoute: (toLoad!) ? Routes.onboard : Routes.welcome,
