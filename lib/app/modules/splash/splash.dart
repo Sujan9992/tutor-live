@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'splash_controller.dart';
 
-class SplashPageScreen extends StatelessWidget {
+class SplashPageScreen extends GetWidget<SplashController> {
   const SplashPageScreen({Key? key}) : super(key: key);
 
   @override
@@ -24,6 +26,7 @@ class SplashPageScreen extends StatelessWidget {
                   ),
                 ),
               ),
+              const CircularProgressIndicator(),
             ],
           ),
         ),

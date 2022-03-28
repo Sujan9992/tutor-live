@@ -3,7 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tutor_live/routes/pages.dart';
+import 'app/bindings/main_binding.dart';
+import 'routes/pages.dart';
 //import 'package:tutor_live/core/constants/colors.dart';
 
 Future<void> main() async {
@@ -42,7 +43,10 @@ class MyApp extends StatelessWidget {
         ),
       ),
       getPages: AppPages.pages,
-      initialRoute: (toLoad!) ? Routes.onboard : Routes.welcome,
+      initialRoute: (toLoad!) ? Routes.onboard : Routes.splash,
+      //initialRoute: (toLoad!) ? Routes.onboard : Routes.welcome,
+      //initialRoute: Routes.splash,
+      initialBinding: MainBinding(),
     );
   }
 }
