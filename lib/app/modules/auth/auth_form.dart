@@ -14,10 +14,10 @@ class AuthForm extends StatelessWidget {
   }) : super(key: key);
 
   void create() async {
-    print('---------------');
-    print('error!  {auth_from.dart}');
-    print('---------------');
-    Get.snackbar('Error', 'Correct your email!');
+    debugPrint('---------------');
+    debugPrint('error!  {auth_from.dart}');
+    debugPrint('---------------');
+    Get.snackbar('Error', 'Invalid details!');
   }
 
   final TextEditingController? fullname;
@@ -50,6 +50,7 @@ class AuthForm extends StatelessWidget {
           children: [
             SizedBox(
               height: Get.height * 0.2,
+              child: Image.asset('assets/images/logo.png'),
             ),
             if (controller.isLoggedIn.value)
               CustomTextField(
@@ -90,8 +91,15 @@ class AuthForm extends StatelessWidget {
             if (controller.isLoggedIn.value)
               CustomTextField(
                 obscureText: true,
-                validator: ((value) =>
-                    value!.isEmpty ? 'Please enter your password' : null),
+                validator: ((value) {
+                  if (value!.isEmpty) {
+                    return 'Please confirm your password';
+                  } else if (value != password!.text) {
+                    return 'Passwords do not match';
+                  } else {
+                    return null;
+                  }
+                }),
                 controller: confirmPassword!,
                 hintText: 'Confirm password',
                 icon: Icons.password_outlined,
@@ -100,9 +108,9 @@ class AuthForm extends StatelessWidget {
             TextButton(
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
-                  print('---------------');
-                  print('form validated {auth_from.dart}');
-                  print('---------------');
+                  debugPrint('---------------');
+                  debugPrint('form validated {auth_from.dart}');
+                  debugPrint('---------------');
                   authType!();
                 } else {
                   create();
@@ -159,9 +167,9 @@ class AuthForm extends StatelessWidget {
                 Text(secondary),
                 TextButton(
                   onPressed: () {
-                    print('---------------');
-                    print('sign in or register {auth_from.dart}');
-                    print('---------------');
+                    debugPrint('---------------');
+                    debugPrint('sign in or register {auth_from.dart}');
+                    debugPrint('---------------');
                     controller.toggleFormType();
                   },
                   child: Text(

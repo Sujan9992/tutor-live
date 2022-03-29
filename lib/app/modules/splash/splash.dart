@@ -11,22 +11,9 @@ class SplashPageScreen extends GetWidget<SplashController> {
       body: Center(
         child: SafeArea(
           child: Column(
-            children: [
-              Expanded(
-                flex: 3,
-                child: Hero(
-                  tag: "logo",
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      SizedBox(
-                        child: Text('Welcome'),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const CircularProgressIndicator(),
+            children: const [
+              SizedBox(),
+              CircularProgressIndicator(),
             ],
           ),
         ),

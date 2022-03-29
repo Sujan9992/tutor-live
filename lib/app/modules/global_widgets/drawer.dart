@@ -10,7 +10,7 @@ class DrawerMenu extends StatefulWidget {
 }
 
 class _DrawerMenuState extends State<DrawerMenu> {
-  bool tutor_mode = false;
+  bool tutorMode = false;
 
   Widget buildCard(
       IconData leading, String text, IconData trailing, Function onTap) {
@@ -46,10 +46,10 @@ class _DrawerMenuState extends State<DrawerMenu> {
         Card(
           child: SwitchListTile(
             activeColor: Colors.red,
-            value: tutor_mode,
+            value: tutorMode,
             onChanged: (bool value) {
               setState(() {
-                tutor_mode = value;
+                tutorMode = value;
               });
             },
             title: const Text('Tutor Mode'),

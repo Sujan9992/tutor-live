@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tutor_live/app/modules/courses/course_frame.dart';
-import 'package:tutor_live/app/modules/global_widgets/drawer.dart';
-import 'package:tutor_live/app/modules/home/controller/homepage_controller.dart';
-import 'package:tutor_live/app/modules/home/widgets/home_frame.dart';
-import 'package:tutor_live/app/modules/notification/notification_frame.dart';
-import 'package:tutor_live/app/modules/profile/profile_frame.dart';
-
-import '../../../routes/pages.dart';
+import '../courses/course_frame.dart';
+import '../global_widgets/drawer.dart';
+import 'controller/homepage_controller.dart';
+import 'widgets/home_frame.dart';
+import '../notification/notification_frame.dart';
+import '../profile/profile_frame.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);

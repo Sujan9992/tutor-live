@@ -28,42 +28,43 @@ class AuthController extends GetxController {
     isLoggedIn(!isLoggedIn.value);
   }
 
-  toggleShowPassword() {
-    showPassword(!showPassword.value);
-  }
-
   Future<bool> login() async {
     final email = emailTextController.text;
     final password = passwordTextController.text;
 
     try {
       isLoading(true);
-      print('---------------');
-      print('loading {auth_controller.dart - login}');
-      print('---------------');
-      final loginResponse =
-          await apiRepositoryInterface.login(LoginRequest(email, password));
-      print('---------------');
-      print('loginResponse {auth_controller.dart - login}');
-      print('---------------');
+      debugPrint('---------------');
+      debugPrint('loading {auth_controller.dart - login}');
+      debugPrint('---------------');
+      final loginResponse = await apiRepositoryInterface.login(
+        LoginRequest(
+          email,
+          password,
+        ),
+      );
+
       if (loginResponse != null) {
+        debugPrint('---------------');
+        debugPrint('user logged in {auth_controller.dart - login}');
+        debugPrint('---------------');
         await localRepositoryInterface.setToken(loginResponse.token);
         await localRepositoryInterface.setUser(loginResponse.user);
-        print('---------------');
-        print('user is set {auth_controller.dart - login}');
-        print('---------------');
+        debugPrint('-------------------');
+        debugPrint('user is set on local storage {auth_controller - register}');
+        debugPrint('-------------------');
         return true;
       } else {
-        print('---------------');
-        print('user is null {auth_controller.dart - login}');
-        print('---------------');
+        debugPrint('---------------');
+        debugPrint('loginresponse is null {auth_controller.dart - login}');
+        debugPrint('---------------');
         isLoading(false);
         return false;
       }
     } on Exception {
-      print('---------------');
-      print('exception {auth_controller.dart - login}');
-      print('---------------');
+      debugPrint('---------------');
+      debugPrint('exception {auth_controller.dart - login}');
+      debugPrint('---------------');
       isLoading(false);
       return false;
     }
@@ -73,35 +74,38 @@ class AuthController extends GetxController {
     final fullname = fullnameTexController.text;
     final email = emailTextController.text;
     final password = passwordTextController.text;
-    final confirmPassword = passwordTextController.text;
     try {
       isLoading(true);
-      print('-------------------');
-      print('try {auth_controller - register}');
-      print('-------------------');
+      debugPrint('-------------------');
+      debugPrint('try {auth_controller - register}');
+      debugPrint('-------------------');
       final registerResponse = await apiRepositoryInterface.register(
         RegisterRequest(
-          fullName: fullname,
-          email: email,
-          password: password,
-          confirmPassword: confirmPassword,
+          fullname,
+          email,
+          password,
         ),
       );
-      print('-------------------');
-      print(registerResponse);
-      print('-------------------');
       if (registerResponse != null) {
+        debugPrint('user is registered {auth_controller - register}');
+        debugPrint('-------------------');
         await localRepositoryInterface.setToken(registerResponse.token);
         await localRepositoryInterface.setUser(registerResponse.user);
+        debugPrint('-------------------');
+        debugPrint('user is set on local storage {auth_controller - register}');
+        debugPrint('-------------------');
         return true;
       } else {
-        print('-------------------');
-        print('success {auth_controller - register}');
-        print('-------------------');
+        debugPrint('-------------------');
+        debugPrint('register response is null {auth_controller - register}');
+        debugPrint('-------------------');
         isLoading(false);
         return false;
       }
     } on Exception {
+      debugPrint('---------------');
+      debugPrint('exception {auth_controller.dart - register}');
+      debugPrint('---------------');
       isLoading(false);
       return false;
     }

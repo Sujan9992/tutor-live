@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import '../../../routes/pages.dart';
 import '../../domain/repository/api_repository.dart';
@@ -21,22 +22,22 @@ class SplashController extends GetxController {
     if (token != null) {
       final result = await apiRepositoryInterface.getUserFromToken(token);
       if (result != null) {
-        await localRepositoryInterface.setUser(result.user);
-        print('---------------');
-        print('user is set {splash_controller.dart - validateSession}');
-        print('---------------');
+        await localRepositoryInterface.setUser(result.user!);
+        debugPrint('---------------');
+        debugPrint('user is set {splash_controller.dart - validateSession}');
+        debugPrint('---------------');
         Get.offAllNamed(Routes.home);
       } else {
-        print('---------------');
-        print('user is null {splash_controller.dart - validateSession}');
-        print('---------------');
-        Get.offAllNamed(Routes.auth);
+        debugPrint('---------------');
+        debugPrint('user is null {splash_controller.dart - validateSession}');
+        debugPrint('---------------');
+        Get.offAllNamed(Routes.home);
       }
     } else {
-      print('---------------');
-      print('token is null {splash_controller.dart - validateSession}');
-      print('---------------');
-      Get.offAllNamed(Routes.auth);
+      debugPrint('---------------');
+      debugPrint('token is null {splash_controller.dart - validateSession}');
+      debugPrint('---------------');
+      Get.offAllNamed(Routes.home);
     }
   }
 }
