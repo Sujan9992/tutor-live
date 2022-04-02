@@ -2,27 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class DrawerMenu extends StatefulWidget {
-  const DrawerMenu({Key? key}) : super(key: key);
+class EndDrawer extends StatefulWidget {
+  const EndDrawer({Key? key}) : super(key: key);
 
   @override
-  State<DrawerMenu> createState() => _DrawerMenuState();
+  State<EndDrawer> createState() => _EndDrawerState();
 }
 
-class _DrawerMenuState extends State<DrawerMenu> {
+class _EndDrawerState extends State<EndDrawer> {
   bool tutorMode = false;
 
   Widget buildCard(
-    String text,
-    IconData trailing,
-    Function() onTap,
-  ) {
+      IconData leading, String text, IconData trailing, Function onTap) {
     return Card(
       child: ListTile(
         autofocus: true,
+        leading: Icon(leading),
         title: Text(text),
         trailing: Icon(trailing),
-        onTap: onTap,
       ),
     );
   }
@@ -39,7 +36,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
             ),
             child: Center(
               child: Text(
-                'Courses',
+                'Profile',
                 style: TextStyle(
                   fontFamily: GoogleFonts.suezOne().fontFamily,
                   color: Colors.red,
@@ -48,52 +45,71 @@ class _DrawerMenuState extends State<DrawerMenu> {
               ),
             ),
           ),
+          Card(
+            child: SwitchListTile(
+              activeColor: Colors.red,
+              value: tutorMode,
+              onChanged: (bool value) {
+                setState(
+                  () {
+                    tutorMode = value;
+                  },
+                );
+              },
+              title: const Text('Tutor Mode'),
+              secondary: const Icon(Icons.person_outline),
+            ),
+          ),
           buildCard(
+            Icons.language_outlined,
             'Language',
             Icons.arrow_forward_ios_rounded,
             () {},
           ),
           buildCard(
-            'Settings',
-            Icons.arrow_forward_ios_rounded,
-            () {},
-          ),
-          buildCard(
+            Icons.support_outlined,
             'Support',
             Icons.arrow_forward_ios_rounded,
             () {},
           ),
           buildCard(
+            Icons.info_outline,
             'About',
             Icons.arrow_forward_ios_rounded,
             () {},
           ),
           buildCard(
-            'Settings',
-            Icons.arrow_forward_ios_rounded,
-            () {},
-          ),
-          buildCard(
-            'Support',
-            Icons.arrow_forward_ios_rounded,
-            () {},
-          ),
-          buildCard(
+            Icons.info_outline,
             'About',
             Icons.arrow_forward_ios_rounded,
             () {},
           ),
           buildCard(
-            'Settings',
+            Icons.info_outline,
+            'About',
             Icons.arrow_forward_ios_rounded,
             () {},
           ),
           buildCard(
-            'Support',
+            Icons.info_outline,
+            'About',
             Icons.arrow_forward_ios_rounded,
             () {},
           ),
           buildCard(
+            Icons.info_outline,
+            'About',
+            Icons.arrow_forward_ios_rounded,
+            () {},
+          ),
+          buildCard(
+            Icons.info_outline,
+            'About',
+            Icons.arrow_forward_ios_rounded,
+            () {},
+          ),
+          buildCard(
+            Icons.info_outline,
             'About',
             Icons.arrow_forward_ios_rounded,
             () {},
@@ -103,8 +119,8 @@ class _DrawerMenuState extends State<DrawerMenu> {
       persistentFooterButtons: [
         Card(
           child: ListTile(
-            leading: const Icon(Icons.add),
-            title: const Text('Create Course'),
+            leading: const Icon(Icons.settings),
+            title: const Text('Settings'),
             onTap: () {},
           ),
         ),

@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../chat/chat_frame.dart';
+import '../global_widgets/end_drawer.dart';
 import '../courses/course_frame.dart';
 import '../global_widgets/drawer.dart';
 import 'controller/homepage_controller.dart';
 import 'widgets/home_frame.dart';
 import '../notification/notification_frame.dart';
-import '../profile/profile_frame.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
   final HomePageController controller = Get.put(HomePageController());
+  final GlobalKey _scaffoldKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
         iconTheme: Theme.of(context).iconTheme,
@@ -23,18 +26,27 @@ class HomePage extends StatelessWidget {
         title: Image.asset('assets/images/logo.png', height: Get.height * 0.2),
         centerTitle: true,
         elevation: 0,
-        actions: [
-          Center(
-            child: TextButton.icon(
-              style: ButtonStyle(
-                  overlayColor:
-                      MaterialStateProperty.all<Color>(Colors.transparent)),
+        leading: Builder(
+          builder: (context) {
+            return IconButton(
+              icon: const Icon(Icons.library_books_rounded),
               onPressed: () {
-                // Get.toNamed(Routes.TEXTING);
+                Scaffold.of(context).openDrawer();
               },
-              icon:
-                  const Icon(Icons.chat_rounded, color: Colors.black, size: 30),
-              label: const Text(''),
+            );
+          },
+        ),
+        actions: <Widget>[
+          Center(
+            child: Builder(
+              builder: (context) {
+                return IconButton(
+                  onPressed: () {
+                    Scaffold.of(context).openEndDrawer();
+                  },
+                  icon: const Icon(Icons.person_rounded),
+                );
+              },
             ),
           ),
         ],
@@ -47,11 +59,13 @@ class HomePage extends StatelessWidget {
           elevation: 0,
           selectedItemColor: Colors.red,
           unselectedItemColor: Colors.black,
-          selectedLabelStyle:
-              TextStyle(fontFamily: GoogleFonts.suezOne().fontFamily),
+          selectedLabelStyle: TextStyle(
+            fontFamily: GoogleFonts.suezOne().fontFamily,
+          ),
           unselectedLabelStyle: TextStyle(
-              fontFamily: GoogleFonts.sunflower().fontFamily,
-              fontWeight: FontWeight.w100),
+            fontFamily: GoogleFonts.sunflower().fontFamily,
+            fontWeight: FontWeight.w100,
+          ),
           type: BottomNavigationBarType.fixed,
           items: const [
             BottomNavigationBarItem(
@@ -65,24 +79,35 @@ class HomePage extends StatelessWidget {
               activeIcon: Icon(Icons.video_library_rounded),
             ),
             BottomNavigationBarItem(
-                label: 'Notifications',
-                icon: Icon(Icons.notifications_outlined),
-                activeIcon: Icon(Icons.notifications_rounded)),
+              label: 'Notifications',
+              icon: Icon(Icons.notifications_outlined),
+              activeIcon: Icon(Icons.notifications_rounded),
+            ),
             BottomNavigationBarItem(
-                label: 'Profile',
-                icon: Icon(Icons.person_outline),
-                activeIcon: Icon(Icons.person_rounded)),
+              label: 'Chat',
+              icon: Icon(Icons.chat_outlined),
+              activeIcon: Icon(Icons.chat_rounded),
+            ),
           ],
         ),
       ),
       drawer: const Drawer(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20),
-            topRight: Radius.circular(20),
-          ),
-        ),
+        // shape: RoundedRectangleBorder(
+        //   borderRadius: BorderRadius.only(
+        //     topLeft: Radius.circular(20),
+        //     topRight: Radius.circular(20),
+        //   ),
+        // ),
         child: DrawerMenu(),
+      ),
+      endDrawer: const Drawer(
+        // shape: RoundedRectangleBorder(
+        //   borderRadius: BorderRadius.only(
+        //     topLeft: Radius.circular(20),
+        //     topRight: Radius.circular(20),
+        //   ),
+        // ),
+        child: EndDrawer(),
       ),
       body: Container(
         height: Get.height - Get.height * 0.12 - kBottomNavigationBarHeight,
@@ -111,7 +136,7 @@ class HomePage extends StatelessWidget {
             HomeFrame(),
             const CourseFrame(),
             const NotificationFrame(),
-            const ProfileFrame(),
+            const ChatFrame(),
           ],
         ),
       ),

@@ -31,6 +31,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Tutor Live',
       theme: ThemeData(
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        hoverColor: Colors.transparent,
         fontFamily: GoogleFonts.poppins().fontFamily,
         colorScheme: ColorScheme.fromSwatch(
           primarySwatch: Colors.red,
