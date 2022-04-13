@@ -3,7 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'app/bindings/main_binding.dart';
+
+import 'main_binding.dart';
 import 'routes/pages.dart';
 
 Future<void> main() async {

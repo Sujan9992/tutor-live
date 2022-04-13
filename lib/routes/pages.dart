@@ -1,14 +1,14 @@
 import 'package:get/get.dart';
-import '../app/modules/courses/course_bindings.dart';
-import '../app/modules/courses/course_frame.dart';
-import '../app/bindings/main_binding.dart';
-import '../app/modules/auth/auth_binding.dart';
-import '../app/modules/auth/auth_screen.dart';
-import '../app/modules/splash/splash_binding.dart';
-import '../app/modules/onboarding/onboarding_page.dart';
-import '../app/modules/splash/splash.dart';
 
-import '../app/modules/home/homepage.dart';
+import '../main_binding.dart';
+import '../modules/auth/controller/auth_binding.dart';
+import '../modules/auth/view/auth_screen.dart';
+import '../modules/courses/controller/course_bindings.dart';
+import '../modules/courses/view/course_frame.dart';
+import '../modules/home/homepage.dart';
+import '../modules/onboarding/view/onboarding_page.dart';
+import '../modules/splash/view/splash.dart';
+import '../modules/splash/controller/splash_binding.dart';
 
 part './routes.dart';
 
