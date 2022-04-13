@@ -7,17 +7,8 @@ class SplashPageScreen extends GetWidget<SplashController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: SafeArea(
-          child: Column(
-            children: const [
-              SizedBox(),
-              CircularProgressIndicator(),
-            ],
-          ),
-        ),
-      ),
+    return const Scaffold(
+      body: Center(child: CircularProgressIndicator()),
     );
   }
 }

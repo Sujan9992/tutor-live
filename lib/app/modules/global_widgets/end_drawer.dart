@@ -31,9 +31,7 @@ class _EndDrawerState extends State<EndDrawer> {
         physics: const BouncingScrollPhysics(),
         children: [
           DrawerHeader(
-            decoration: BoxDecoration(
-              color: Colors.red.shade200,
-            ),
+            decoration: BoxDecoration(color: Colors.red.shade200),
             child: Center(
               child: Text(
                 'Profile',

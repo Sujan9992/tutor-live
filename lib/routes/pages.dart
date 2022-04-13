@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import '../app/modules/courses/course_bindings.dart';
+import '../app/modules/courses/course_frame.dart';
 import '../app/bindings/main_binding.dart';
 import '../app/modules/auth/auth_binding.dart';
 import '../app/modules/auth/auth_screen.dart';
@@ -33,6 +35,19 @@ abstract class AppPages {
     GetPage(
       name: Routes.home,
       page: () => HomePage(),
+      bindings: [
+        MainBinding(),
+        CourseBinding(),
+      ],
+    ),
+    GetPage(
+      name: Routes.courses,
+      page: () => CourseFrame(),
+      binding: CourseBinding(),
+      bindings: [
+        MainBinding(),
+        CourseBinding(),
+      ],
     ),
   ];
 }

@@ -40,8 +40,7 @@ class CustomTextField extends StatelessWidget {
             borderSide: BorderSide(color: Colors.red.shade100),
           ),
           focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.red.shade100),
-          ),
+              borderSide: BorderSide(color: Colors.red.shade100)),
         ),
       ),
     );

@@ -14,9 +14,6 @@ class AuthForm extends StatelessWidget {
   }) : super(key: key);
 
   void create() async {
-    debugPrint('---------------');
-    debugPrint('error!  {auth_from.dart}');
-    debugPrint('---------------');
     Get.snackbar('Error', 'Invalid details!');
   }
 
@@ -108,9 +105,6 @@ class AuthForm extends StatelessWidget {
             TextButton(
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
-                  debugPrint('---------------');
-                  debugPrint('form validated {auth_from.dart}');
-                  debugPrint('---------------');
                   authType!();
                 } else {
                   create();
@@ -167,9 +161,6 @@ class AuthForm extends StatelessWidget {
                 Text(secondary),
                 TextButton(
                   onPressed: () {
-                    debugPrint('---------------');
-                    debugPrint('sign in or register {auth_from.dart}');
-                    debugPrint('---------------');
                     controller.toggleFormType();
                   },
                   child: Text(
@@ -179,12 +170,10 @@ class AuthForm extends StatelessWidget {
                   ),
                   style: ButtonStyle(
                     visualDensity: VisualDensity.compact,
-                    padding: MaterialStateProperty.all(
-                      const EdgeInsets.all(0),
-                    ),
+                    padding: MaterialStateProperty.all(const EdgeInsets.all(0)),
                     overlayColor: MaterialStateProperty.all(Colors.transparent),
                   ),
-                ),
+                )
               ],
             ),
           ],
@@ -195,8 +184,6 @@ class AuthForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => authFormType(),
-    );
+    return Obx(() => authFormType());
   }
 }

@@ -59,9 +59,8 @@ class HomePage extends StatelessWidget {
           elevation: 0,
           selectedItemColor: Colors.red,
           unselectedItemColor: Colors.black,
-          selectedLabelStyle: TextStyle(
-            fontFamily: GoogleFonts.suezOne().fontFamily,
-          ),
+          selectedLabelStyle:
+              TextStyle(fontFamily: GoogleFonts.suezOne().fontFamily),
           unselectedLabelStyle: TextStyle(
             fontFamily: GoogleFonts.sunflower().fontFamily,
             fontWeight: FontWeight.w100,
@@ -92,21 +91,9 @@ class HomePage extends StatelessWidget {
         ),
       ),
       drawer: const Drawer(
-        // shape: RoundedRectangleBorder(
-        //   borderRadius: BorderRadius.only(
-        //     topLeft: Radius.circular(20),
-        //     topRight: Radius.circular(20),
-        //   ),
-        // ),
         child: DrawerMenu(),
       ),
       endDrawer: const Drawer(
-        // shape: RoundedRectangleBorder(
-        //   borderRadius: BorderRadius.only(
-        //     topLeft: Radius.circular(20),
-        //     topRight: Radius.circular(20),
-        //   ),
-        // ),
         child: EndDrawer(),
       ),
       body: Container(
@@ -117,7 +104,7 @@ class HomePage extends StatelessWidget {
           boxShadow: [
             BoxShadow(
                 color: Colors.grey.shade300,
-                offset: const Offset(0.0, 1.0), //(x,y)
+                offset: const Offset(0.0, 1.0), //(x,y) co-rdinates
                 blurRadius: 6.0),
           ],
           borderRadius: const BorderRadius.only(
@@ -134,7 +121,7 @@ class HomePage extends StatelessWidget {
           controller: controller.pageController,
           children: [
             HomeFrame(),
-            const CourseFrame(),
+            CourseFrame(),
             const NotificationFrame(),
             const ChatFrame(),
           ],

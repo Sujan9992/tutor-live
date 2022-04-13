@@ -1,5 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
+import '../models/courses.dart';
+import '../models/category.dart';
 import '../../domain/repository/api_repository.dart';
 import '../../domain/response/login_response.dart';
 import '../../domain/request/register_request.dart';
@@ -9,7 +10,7 @@ class ApiRepositoryImplement extends ApiRepositoryInterface {
   static var client = http.Client();
 
   static Uri getMainUrl(String endpoint,
-      {String baseUrl = '192.168.1.251:8000'}) {
+      {String baseUrl = '192.168.1.66:8000'}) {
     var url = Uri.http((baseUrl), (endpoint), {'q': '{http}'});
     return url;
   }
@@ -23,22 +24,10 @@ class ApiRepositoryImplement extends ApiRepositoryInterface {
   @override
   Future<LoginResponse?> getUserFromToken(String token) async {
     var result =
-        await client.get(getMainUrl('/api/profile'), headers: header(token));
-    debugPrint(
-        '${result.statusCode} {api_repository_implement.dart - getUserFromToken}');
+        await client.get(getMainUrl('/api/profile/'), headers: header(token));
     if (result.statusCode == 200) {
-      debugPrint('------------------------------------');
-      debugPrint(
-          'user profile fetched {api_repository_implement.dart - getUserFromToken}');
-      debugPrint(result.body);
-      debugPrint('------------------------------------');
       return loginResponseFromJson(result.body);
     } else {
-      debugPrint('---------------');
-      debugPrint(
-          'unable to fetch user profile {api_repository_implement- getUserFromToken}');
-      debugPrint(result.body);
-      debugPrint('---------------');
       return null;
     }
   }
@@ -47,28 +36,15 @@ class ApiRepositoryImplement extends ApiRepositoryInterface {
   Future<LoginResponse?> login(LoginRequest login) async {
     var result = await client.post(getMainUrl('/api/login/'),
         body: {'email': login.email, 'password': login.password});
-    debugPrint('${result.statusCode} {api_repository_implement.dart - login}');
     if (result.statusCode == 200) {
-      debugPrint('------------------------------------');
-      debugPrint('login success {api_repository_implement.dart - login}');
-      debugPrint(result.body);
-      debugPrint('------------------------------------');
       return loginResponseFromJson(result.body);
     } else {
-      debugPrint('---------------');
-      debugPrint('unable to login {api_repository_implement- login}');
-      debugPrint(result.body);
-      debugPrint('---------------');
       return null;
     }
   }
 
   @override
   Future<void> logout(String? token) async {
-    debugPrint('------------------------------------');
-    debugPrint(
-        'removing token and logout {api_repository_implement.dart - logout}');
-    debugPrint('------------------------------------');
     return;
   }
 
@@ -79,20 +55,40 @@ class ApiRepositoryImplement extends ApiRepositoryInterface {
       'email': register.email,
       'password': register.password,
     });
-    debugPrint(
-        '${result.statusCode} {api_repository_implement.dart - register}');
     if (result.statusCode == 201) {
-      debugPrint('------------------------------------');
-      debugPrint(
-          'registration success {api_repository_implement.dart - register}');
-      debugPrint(result.body);
-      debugPrint('------------------------------------');
       return loginResponseFromJson(result.body);
     } else {
-      debugPrint('---------------');
-      debugPrint('unable to register {api_repository_implement- register}');
-      debugPrint(result.body);
-      debugPrint('---------------');
+      return null;
+    }
+  }
+
+  @override
+  Future<List<Category?>?> getCategories() async {
+    var result = await client.get(getMainUrl('/api/categories/'));
+    if (result.statusCode == 200) {
+      return categoryFromJson(result.body);
+    } else {
+      return null;
+    }
+  }
+
+  @override
+  Future<List<Courses?>?> getCoursesByCategory(String title) async {
+    var result =
+        await client.get(getMainUrl('/api/get_courses_by_category/$title/'));
+    if (result.statusCode == 200) {
+      return coursesFromJson(result.body);
+    } else {
+      return null;
+    }
+  }
+
+  @override
+  Future<List<Courses?>?> getCourses() async {
+    var result = await client.get(getMainUrl('/api/courses/'));
+    if (result.statusCode == 200) {
+      return coursesFromJson(result.body);
+    } else {
       return null;
     }
   }

@@ -34,37 +34,18 @@ class AuthController extends GetxController {
 
     try {
       isLoading(true);
-      debugPrint('---------------');
-      debugPrint('loading {auth_controller.dart - login}');
-      debugPrint('---------------');
-      final loginResponse = await apiRepositoryInterface.login(
-        LoginRequest(
-          email,
-          password,
-        ),
-      );
+      final loginResponse =
+          await apiRepositoryInterface.login(LoginRequest(email, password));
 
       if (loginResponse != null) {
-        debugPrint('---------------');
-        debugPrint('user logged in {auth_controller.dart - login}');
-        debugPrint('---------------');
         await localRepositoryInterface.setToken(loginResponse.token);
         await localRepositoryInterface.setUser(loginResponse.user);
-        debugPrint('-------------------');
-        debugPrint('user is set on local storage {auth_controller - register}');
-        debugPrint('-------------------');
         return true;
       } else {
-        debugPrint('---------------');
-        debugPrint('loginresponse is null {auth_controller.dart - login}');
-        debugPrint('---------------');
         isLoading(false);
         return false;
       }
     } on Exception {
-      debugPrint('---------------');
-      debugPrint('exception {auth_controller.dart - login}');
-      debugPrint('---------------');
       isLoading(false);
       return false;
     }
@@ -76,36 +57,17 @@ class AuthController extends GetxController {
     final password = passwordTextController.text;
     try {
       isLoading(true);
-      debugPrint('-------------------');
-      debugPrint('try {auth_controller - register}');
-      debugPrint('-------------------');
-      final registerResponse = await apiRepositoryInterface.register(
-        RegisterRequest(
-          fullname,
-          email,
-          password,
-        ),
-      );
+      final registerResponse = await apiRepositoryInterface
+          .register(RegisterRequest(fullname, email, password));
       if (registerResponse != null) {
-        debugPrint('user is registered {auth_controller - register}');
-        debugPrint('-------------------');
         await localRepositoryInterface.setToken(registerResponse.token);
         await localRepositoryInterface.setUser(registerResponse.user);
-        debugPrint('-------------------');
-        debugPrint('user is set on local storage {auth_controller - register}');
-        debugPrint('-------------------');
         return true;
       } else {
-        debugPrint('-------------------');
-        debugPrint('register response is null {auth_controller - register}');
-        debugPrint('-------------------');
         isLoading(false);
         return false;
       }
     } on Exception {
-      debugPrint('---------------');
-      debugPrint('exception {auth_controller.dart - register}');
-      debugPrint('---------------');
       isLoading(false);
       return false;
     }

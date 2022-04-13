@@ -40,9 +40,7 @@ class OnboardingPage extends StatelessWidget {
         onDone: () async {
           SharedPreferences prefs = await SharedPreferences.getInstance();
           await prefs.setBool('isFirst', false);
-          //Get.offAllNamed(Routes.welcome);
           Get.offAllNamed(Routes.auth);
-          //HomeController.checkUserUpdateInfo();
         },
         showSkipButton: true,
         skip: const Text('Skip'),

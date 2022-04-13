@@ -33,14 +33,13 @@ class CalendarChildFrame extends StatelessWidget {
                   labelStyle: const TextStyle(
                       fontSize: 15, fontWeight: FontWeight.bold),
                   indicator: const BubbleTabIndicator(
-                    indicatorHeight: 10.0,
-                    indicatorRadius: 40.0,
-                    indicatorColor: Colors.red,
-                    tabBarIndicatorSize: TabBarIndicatorSize.label,
-                    insets: EdgeInsets.symmetric(horizontal: 2.0),
-                    padding:
-                        EdgeInsets.symmetric(vertical: 10.0, horizontal: -1.0),
-                  ),
+                      indicatorHeight: 10.0,
+                      indicatorRadius: 40.0,
+                      indicatorColor: Colors.red,
+                      tabBarIndicatorSize: TabBarIndicatorSize.label,
+                      insets: EdgeInsets.symmetric(horizontal: 2.0),
+                      padding: EdgeInsets.symmetric(
+                          vertical: 10.0, horizontal: -1.0)),
                   tabs: [
                     for (var day in DateConverter.weekDays()) Tab(text: day),
                   ],

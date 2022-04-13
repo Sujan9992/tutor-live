@@ -11,14 +11,8 @@ class AuthScreen extends GetWidget<AuthController> {
   void login() async {
     var result = await controller.login();
     if (result) {
-      debugPrint('---------------');
-      debugPrint('user is set {auth_screen.dart - login}');
-      debugPrint('---------------');
       Get.offAllNamed(Routes.home);
     } else {
-      debugPrint('---------------');
-      debugPrint('user is null {auth_screen.dart - login}');
-      debugPrint('---------------');
       Get.snackbar('Error', 'Incorrect email or password');
     }
   }
@@ -26,14 +20,8 @@ class AuthScreen extends GetWidget<AuthController> {
   void register() async {
     final result = await controller.register();
     if (result) {
-      debugPrint('---------------');
-      debugPrint('user is set {auth_screen.dart - register}');
-      debugPrint('---------------');
       Get.offAllNamed(Routes.home);
     } else {
-      debugPrint('---------------');
-      debugPrint('user is null {auth_screen.dart - register}');
-      debugPrint('---------------');
       Get.snackbar('Error', 'Invalid');
     }
   }

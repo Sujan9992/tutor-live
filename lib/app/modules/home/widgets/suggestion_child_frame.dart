@@ -26,9 +26,7 @@ class SuggestionChildFrame extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
+                  const SizedBox(height: 10),
                   Text(
                     'No Courses yet...',
                     style: GoogleFonts.nunitoSans(

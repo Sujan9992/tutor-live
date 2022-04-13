@@ -5,7 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'app/bindings/main_binding.dart';
 import 'routes/pages.dart';
-//import 'package:tutor_live/core/constants/colors.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,30 +25,21 @@ class MyApp extends StatelessWidget {
 
   final bool? toLoad;
   @override
-  Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Tutor Live',
-      theme: ThemeData(
-        splashColor: Colors.transparent,
-        highlightColor: Colors.transparent,
-        hoverColor: Colors.transparent,
-        fontFamily: GoogleFonts.poppins().fontFamily,
-        colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.red,
-          brightness: Brightness.light,
-        ).copyWith(
-          secondary: Colors.red.shade400,
+  Widget build(BuildContext context) => GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Tutor Live',
+        theme: ThemeData(
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+          hoverColor: Colors.transparent,
+          fontFamily: GoogleFonts.poppins().fontFamily,
+          colorScheme: ColorScheme.fromSwatch(
+                  primarySwatch: Colors.red, brightness: Brightness.light)
+              .copyWith(secondary: Colors.red.shade400),
+          iconTheme: const IconThemeData(color: Colors.black),
         ),
-        iconTheme: const IconThemeData(
-          color: Colors.black,
-        ),
-      ),
-      getPages: AppPages.pages,
-      initialRoute: (toLoad!) ? Routes.onboard : Routes.splash,
-      //initialRoute: (toLoad!) ? Routes.onboard : Routes.welcome,
-      //initialRoute: Routes.splash,
-      initialBinding: MainBinding(),
-    );
-  }
+        getPages: AppPages.pages,
+        initialRoute: (toLoad!) ? Routes.onboard : Routes.splash,
+        initialBinding: MainBinding(),
+      );
 }
