@@ -9,7 +9,8 @@ class LocalRepositoryImplement extends LocalRepositoryInterface {
   @override
   Future<void> clearAllData() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    sharedPreferences.clear();
+    sharedPreferences.remove(prefToken);
+    sharedPreferences.remove(prefFullName);
   }
 
   @override

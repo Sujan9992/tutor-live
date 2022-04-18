@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+
+import '../../modules/courses/controller/course_controller.dart';
 
 class DrawerMenu extends StatefulWidget {
   const DrawerMenu({Key? key}) : super(key: key);
@@ -10,93 +11,31 @@ class DrawerMenu extends StatefulWidget {
 }
 
 class _DrawerMenuState extends State<DrawerMenu> {
-  bool tutorMode = false;
-
-  Widget buildCard(
-    String text,
-    IconData trailing,
-    Function() onTap,
-  ) {
-    return Card(
-      child: ListTile(
-        autofocus: true,
-        title: Text(text),
-        trailing: Icon(trailing),
-        onTap: onTap,
-      ),
-    );
-  }
+  final controller = Get.find<CourseController>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        physics: const BouncingScrollPhysics(),
-        children: [
-          DrawerHeader(
-            decoration: BoxDecoration(color: Colors.red.shade200),
-            child: Center(
-              child: Text(
-                'Courses',
-                style: TextStyle(
-                  fontFamily: GoogleFonts.suezOne().fontFamily,
-                  color: Colors.red,
-                  fontSize: Get.height * 0.05,
+      body: FutureBuilder(
+        future: controller.apiRepositoryInterface.getEnrolledCourses(),
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          if (snapshot.hasData) {
+            return ListView.builder(
+              shrinkWrap: true,
+              physics: const BouncingScrollPhysics(),
+              itemCount: snapshot.data!.length,
+              itemBuilder: (BuildContext context, int index) => Card(
+                child: ListTile(
+                  title: Text(snapshot.data![index]!.title),
                 ),
               ),
-            ),
-          ),
-          buildCard(
-            'Language',
-            Icons.arrow_forward_ios_rounded,
-            () {},
-          ),
-          buildCard(
-            'Settings',
-            Icons.arrow_forward_ios_rounded,
-            () {},
-          ),
-          buildCard(
-            'Support',
-            Icons.arrow_forward_ios_rounded,
-            () {},
-          ),
-          buildCard(
-            'About',
-            Icons.arrow_forward_ios_rounded,
-            () {},
-          ),
-          buildCard(
-            'Settings',
-            Icons.arrow_forward_ios_rounded,
-            () {},
-          ),
-          buildCard(
-            'Support',
-            Icons.arrow_forward_ios_rounded,
-            () {},
-          ),
-          buildCard(
-            'About',
-            Icons.arrow_forward_ios_rounded,
-            () {},
-          ),
-          buildCard(
-            'Settings',
-            Icons.arrow_forward_ios_rounded,
-            () {},
-          ),
-          buildCard(
-            'Support',
-            Icons.arrow_forward_ios_rounded,
-            () {},
-          ),
-          buildCard(
-            'About',
-            Icons.arrow_forward_ios_rounded,
-            () {},
-          ),
-        ],
+            );
+          } else {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
       ),
       persistentFooterButtons: [
         Card(

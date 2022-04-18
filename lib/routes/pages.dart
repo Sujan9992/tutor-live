@@ -38,6 +38,7 @@ abstract class AppPages {
       bindings: [
         MainBinding(),
         CourseBinding(),
+        AuthBinding(),
       ],
     ),
     GetPage(

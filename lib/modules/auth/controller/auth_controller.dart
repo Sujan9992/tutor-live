@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../model/user.dart';
 import '../../../domain/repository/api_repository.dart';
 import '../../../domain/repository/local_repository.dart';
 import '../../../domain/request/login_request.dart';
@@ -49,6 +50,18 @@ class AuthController extends GetxController {
       isLoading(false);
       return false;
     }
+  }
+
+  void logout() async {
+    final token = await localRepositoryInterface.getToken();
+    await apiRepositoryInterface.logout(token);
+    await localRepositoryInterface.clearAllData();
+  }
+
+  Future<User?> getProfile() async {
+    final token = await localRepositoryInterface.getToken();
+    var profile = await apiRepositoryInterface.getUserProfile(token!);
+    return profile;
   }
 
   Future<bool> register() async {

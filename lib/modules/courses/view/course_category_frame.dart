@@ -1,6 +1,7 @@
 import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tutor_live/core/constants.dart';
 
 import '../controller/course_controller.dart';
 
@@ -50,8 +51,15 @@ class CourseCategoryFrame extends StatelessWidget {
                   physics: const BouncingScrollPhysics(),
                   itemCount: controller.coursesList.length,
                   itemBuilder: (BuildContext context, int index) => Card(
-                    child: ListTile(
-                      title: Text(controller.coursesList[index].title),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ListTile(
+                        leading: Image.network(
+                          '${Constants.mainUrl}${controller.coursesList[index].image}',
+                          width: 80,
+                        ),
+                        title: Text(controller.coursesList[index].title),
+                      ),
                     ),
                   ),
                 ),
@@ -71,8 +79,15 @@ class CourseCategoryFrame extends StatelessWidget {
                           itemCount: snapshot.data.length,
                           itemBuilder: (BuildContext context, int index) =>
                               Card(
-                            child: ListTile(
-                              title: Text(snapshot.data[index].title),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: ListTile(
+                                leading: Image.network(
+                                  '${Constants.mainUrl}${snapshot.data[index].image}',
+                                  width: 80,
+                                ),
+                                title: Text(snapshot.data[index].title),
+                              ),
                             ),
                           ),
                         );

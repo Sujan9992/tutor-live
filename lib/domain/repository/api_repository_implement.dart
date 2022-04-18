@@ -1,4 +1,7 @@
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'local_repository_implement.dart';
+import '../../modules/auth/model/user.dart';
 import '../../modules/courses/model/category.dart';
 import '../../modules/courses/model/courses.dart';
 import '../request/register_request.dart';
@@ -10,7 +13,7 @@ class ApiRepositoryImplement extends ApiRepositoryInterface {
   static var client = http.Client();
 
   static Uri getMainUrl(String endpoint,
-      {String baseUrl = '192.168.1.66:8000'}) {
+      {String baseUrl = '192.168.1.70:8000'}) {
     var url = Uri.http((baseUrl), (endpoint), {'q': '{http}'});
     return url;
   }
@@ -75,7 +78,7 @@ class ApiRepositoryImplement extends ApiRepositoryInterface {
   @override
   Future<List<Courses?>?> getCoursesByCategory(String title) async {
     var result =
-        await client.get(getMainUrl('/api/get_courses_by_category/$title/'));
+        await client.get(getMainUrl('/api/courses_by_category/$title/'));
     if (result.statusCode == 200) {
       return coursesFromJson(result.body);
     } else {
@@ -88,6 +91,31 @@ class ApiRepositoryImplement extends ApiRepositoryInterface {
     var result = await client.get(getMainUrl('/api/courses/'));
     if (result.statusCode == 200) {
       return coursesFromJson(result.body);
+    } else {
+      return null;
+    }
+  }
+
+  @override
+  Future<List<Courses?>?> getEnrolledCourses() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString(prefToken);
+    var result = await client.get(
+        getMainUrl('/api/courses_created_by_current_user/'),
+        headers: header(token!));
+    if (result.statusCode == 200) {
+      return coursesFromJson(result.body);
+    } else {
+      return null;
+    }
+  }
+
+  @override
+  Future<User?> getUserProfile(String token) async {
+    var result = await client.get(getMainUrl('/api/user-profile/'),
+        headers: header(token));
+    if (result.statusCode == 200) {
+      return userFromJson(result.body);
     } else {
       return null;
     }
