@@ -15,7 +15,7 @@ class CourseCategoryFrame extends StatelessWidget {
       initialIndex: controller.categoryTabIndex.value,
       length: controller.categoryList.length + 1,
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(4, 4, 4, 4),
+        padding: const EdgeInsets.fromLTRB(4, 12, 4, 4),
         child: Scaffold(
           backgroundColor: Colors.white,
           appBar: TabBar(
@@ -82,19 +82,16 @@ class CourseCategoryFrame extends StatelessWidget {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: ListTile(
-                                leading: Image.network(
-                                  '${Constants.mainUrl}${snapshot.data[index].image}',
-                                  width: 80,
-                                ),
-                                title: Text(snapshot.data[index].title),
-                              ),
+                                  leading: Image.network(
+                                    '${Constants.mainUrl}${snapshot.data[index].image}',
+                                    width: 80,
+                                  ),
+                                  title: Text(snapshot.data[index].title)),
                             ),
                           ),
                         );
                       } else {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
+                        return const Center(child: CircularProgressIndicator());
                       }
                     },
                   ),

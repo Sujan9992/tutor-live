@@ -14,4 +14,6 @@ abstract class ApiRepositoryInterface {
   Future<List<Courses?>?> getCourses();
   Future<List<Courses?>?> getCoursesByCategory(String title);
   Future<List<Courses?>?> getEnrolledCourses();
+  Future<List<User?>?> getTutorList();
+  Future<List<User?>?> getTutorByCategory(String title);
 }

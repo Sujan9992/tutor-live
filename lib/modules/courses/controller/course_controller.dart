@@ -8,9 +8,11 @@ class CourseController extends GetxController {
 
   RxList categoryList = [].obs;
   RxList coursesList = [].obs;
+  RxList tutorList = [].obs;
   RxList courseCategoryList = [].obs;
   RxBool categoryLoading = false.obs;
   RxBool courseLoading = false.obs;
+  RxBool tutorLoading = false.obs;
   RxString categoryTitle = ''.obs;
   var childTabIndex = 0.obs;
   var categoryTabIndex = 0.obs;
@@ -32,6 +34,7 @@ class CourseController extends GetxController {
   void onInit() {
     loadCategories();
     loadCourses();
+    loadTutorList();
     super.onInit();
   }
 
@@ -54,6 +57,17 @@ class CourseController extends GetxController {
       });
     } finally {
       courseLoading(false);
+    }
+  }
+
+  loadTutorList() {
+    try {
+      tutorLoading(true);
+      apiRepositoryInterface.getTutorList().then((value) {
+        tutorList(value);
+      });
+    } finally {
+      tutorLoading(false);
     }
   }
 }

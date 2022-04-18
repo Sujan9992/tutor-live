@@ -13,7 +13,7 @@ class ApiRepositoryImplement extends ApiRepositoryInterface {
   static var client = http.Client();
 
   static Uri getMainUrl(String endpoint,
-      {String baseUrl = '192.168.1.70:8000'}) {
+      {String baseUrl = '192.168.1.64:8000'}) {
     var url = Uri.http((baseUrl), (endpoint), {'q': '{http}'});
     return url;
   }
@@ -116,6 +116,27 @@ class ApiRepositoryImplement extends ApiRepositoryInterface {
         headers: header(token));
     if (result.statusCode == 200) {
       return userFromJson(result.body);
+    } else {
+      return null;
+    }
+  }
+
+  @override
+  Future<List<User?>?> getTutorList() async {
+    var result = await client.get(getMainUrl('/api/get_tutors/'));
+    if (result.statusCode == 200) {
+      return usersFromJson(result.body);
+    } else {
+      return null;
+    }
+  }
+
+  @override
+  Future<List<User?>?> getTutorByCategory(String title) async {
+    var result =
+        await client.get(getMainUrl('/api/getTutorsByCategory/$title/'));
+    if (result.statusCode == 200) {
+      return usersFromJson(result.body);
     } else {
       return null;
     }

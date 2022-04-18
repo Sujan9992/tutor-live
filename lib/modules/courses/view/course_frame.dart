@@ -47,7 +47,7 @@ class CourseFrame extends StatelessWidget {
         Obx(
           () => (controller.childTabIndex.value == 0)
               ? Expanded(child: CourseCategoryFrame())
-              : const TutorCategoryFrame(),
+              : Expanded(child: TutorCategoryFrame()),
         ),
       ],
     );
