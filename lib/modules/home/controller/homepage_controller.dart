@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../domain/repository/api_repository.dart';
 
 class HomePageController extends GetxController {
+  final ApiRepositoryInterface apiRepositoryInterface;
+  HomePageController(this.apiRepositoryInterface);
+
   var tabpageIndex = 0.obs;
   var isOnMain = true.obs;
   var childTabIndex = 0.obs;

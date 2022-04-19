@@ -6,9 +6,6 @@ class SplashPageScreen extends GetWidget<SplashController> {
   const SplashPageScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: CircularProgressIndicator()),
-    );
-  }
+  Widget build(BuildContext context) =>
+      const Scaffold(body: Center(child: CircularProgressIndicator()));
 }

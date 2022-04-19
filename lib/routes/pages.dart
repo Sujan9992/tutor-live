@@ -5,6 +5,7 @@ import '../modules/auth/controller/auth_binding.dart';
 import '../modules/auth/view/auth_screen.dart';
 import '../modules/courses/controller/course_bindings.dart';
 import '../modules/courses/view/course_frame.dart';
+import '../modules/home/controller/home_page_binding.dart';
 import '../modules/home/homepage.dart';
 import '../modules/onboarding/view/onboarding_page.dart';
 import '../modules/splash/view/splash.dart';
@@ -35,7 +36,9 @@ abstract class AppPages {
     GetPage(
       name: Routes.home,
       page: () => HomePage(),
+      binding: HomePageBinding(),
       bindings: [
+        HomePageBinding(),
         MainBinding(),
         CourseBinding(),
         AuthBinding(),

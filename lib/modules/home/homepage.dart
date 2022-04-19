@@ -11,7 +11,7 @@ import 'view/home_frame.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
-  final HomePageController controller = Get.put(HomePageController());
+  final controller = Get.find<HomePageController>();
   final GlobalKey _scaffoldKey = GlobalKey();
 
   @override
@@ -41,11 +41,10 @@ class HomePage extends StatelessWidget {
             child: Builder(
               builder: (context) {
                 return IconButton(
-                  onPressed: () {
-                    Scaffold.of(context).openEndDrawer();
-                  },
-                  icon: const Icon(Icons.person_rounded),
-                );
+                    onPressed: () {
+                      Scaffold.of(context).openEndDrawer();
+                    },
+                    icon: const Icon(Icons.person_rounded));
               },
             ),
           ),
@@ -90,12 +89,8 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-      drawer: const Drawer(
-        child: DrawerMenu(),
-      ),
-      endDrawer: const Drawer(
-        child: EndDrawer(),
-      ),
+      drawer: const Drawer(child: DrawerMenu()),
+      endDrawer: const Drawer(child: EndDrawer()),
       body: Container(
         height: Get.height - Get.height * 0.12 - kBottomNavigationBarHeight,
         width: Get.width,

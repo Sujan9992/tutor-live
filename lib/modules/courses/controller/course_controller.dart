@@ -32,10 +32,10 @@ class CourseController extends GetxController {
 
   @override
   void onInit() {
+    super.onInit();
     loadCategories();
     loadCourses();
     loadTutorList();
-    super.onInit();
   }
 
   loadCategories() {

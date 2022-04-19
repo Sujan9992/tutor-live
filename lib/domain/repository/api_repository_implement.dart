@@ -1,5 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../modules/home/model/schedule.dart';
 import 'local_repository_implement.dart';
 import '../../modules/auth/model/user.dart';
 import '../../modules/courses/model/category.dart';
@@ -13,7 +14,7 @@ class ApiRepositoryImplement extends ApiRepositoryInterface {
   static var client = http.Client();
 
   static Uri getMainUrl(String endpoint,
-      {String baseUrl = '192.168.1.64:8000'}) {
+      {String baseUrl = '192.168.1.66:8000'}) {
     var url = Uri.http((baseUrl), (endpoint), {'q': '{http}'});
     return url;
   }
@@ -137,6 +138,16 @@ class ApiRepositoryImplement extends ApiRepositoryInterface {
         await client.get(getMainUrl('/api/getTutorsByCategory/$title/'));
     if (result.statusCode == 200) {
       return usersFromJson(result.body);
+    } else {
+      return null;
+    }
+  }
+
+  @override
+  Future<List<Schedule?>?> getSchedules() async {
+    var result = await client.get(getMainUrl('/api/all_schedules/'));
+    if (result.statusCode == 200) {
+      return scheduleFromJson(result.body);
     } else {
       return null;
     }

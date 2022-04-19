@@ -16,26 +16,33 @@ class _DrawerMenuState extends State<DrawerMenu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder(
-        future: controller.apiRepositoryInterface.getEnrolledCourses(),
-        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-          if (snapshot.hasData) {
-            return ListView.builder(
-              shrinkWrap: true,
-              physics: const BouncingScrollPhysics(),
-              itemCount: snapshot.data!.length,
-              itemBuilder: (BuildContext context, int index) => Card(
-                child: ListTile(
-                  title: Text(snapshot.data![index]!.title),
-                ),
-              ),
-            );
-          } else {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        },
+      body: ListView(
+        physics: const BouncingScrollPhysics(),
+        children: [
+          DrawerHeader(
+            decoration: BoxDecoration(color: Colors.red.shade200),
+            child: const Center(child: Text('Courses')),
+          ),
+          FutureBuilder(
+            future: controller.apiRepositoryInterface.getEnrolledCourses(),
+            builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+              if (snapshot.hasData) {
+                return ListView.builder(
+                  shrinkWrap: true,
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: snapshot.data!.length,
+                  itemBuilder: (BuildContext context, int index) => Card(
+                    child: ListTile(title: Text(snapshot.data![index]!.title)),
+                  ),
+                );
+              } else {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            },
+          ),
+        ],
       ),
       persistentFooterButtons: [
         Card(

@@ -1,4 +1,5 @@
 import '../../modules/auth/model/user.dart';
+import '../../modules/home/model/schedule.dart';
 import '../request/login_request.dart';
 import '../request/register_request.dart';
 import '../response/login_response.dart';
@@ -16,4 +17,5 @@ abstract class ApiRepositoryInterface {
   Future<List<Courses?>?> getEnrolledCourses();
   Future<List<User?>?> getTutorList();
   Future<List<User?>?> getTutorByCategory(String title);
+  Future<List<Schedule?>?> getSchedules();
 }
