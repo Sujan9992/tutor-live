@@ -9,20 +9,24 @@ class User {
     this.id,
     this.fullName,
     this.email,
+    this.avatar,
   });
   final int? id;
   final String? fullName;
   final String? email;
+  final String? avatar;
 
   factory User.empty() => User(
         id: null,
         fullName: '',
         email: '',
+        avatar: null,
       );
 
   factory User.fromJson(Map<String, dynamic> json) => User(
         id: json['id'],
         fullName: json["full_name"],
         email: json["email"],
+        avatar: json["avatar"],
       );
 }

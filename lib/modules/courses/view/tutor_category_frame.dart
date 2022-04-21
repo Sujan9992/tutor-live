@@ -2,6 +2,7 @@ import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../core/constants.dart';
 import '../controller/course_controller.dart';
 
 class TutorCategoryFrame extends StatelessWidget {
@@ -53,10 +54,18 @@ class TutorCategoryFrame extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: ListTile(
-                        leading: const CircleAvatar(
+                        leading: CircleAvatar(
                           radius: 30,
-                          child: CircleAvatar(
-                              radius: 25, backgroundColor: Colors.white),
+                          backgroundColor: Colors.white,
+                          child: ClipOval(
+                              child: (controller.tutorList[index].avatar !=
+                                      null)
+                                  ? Image.network(
+                                      '${Constants.mainUrl}${controller.tutorList[index].avatar}',
+                                      fit: BoxFit.cover)
+                                  : Image.network(
+                                      'https://icons-for-free.com/download-icon-man+person+profile+user+worker+icon-1320190557331309792_512.png',
+                                      fit: BoxFit.cover)),
                         ),
                         title: Text(controller.tutorList[index].fullName),
                       ),
@@ -82,11 +91,18 @@ class TutorCategoryFrame extends StatelessWidget {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: ListTile(
-                                  leading: const CircleAvatar(
+                                  leading: CircleAvatar(
                                     radius: 30,
-                                    child: CircleAvatar(
-                                        radius: 25,
-                                        backgroundColor: Colors.white),
+                                    backgroundColor: Colors.white,
+                                    child: ClipOval(
+                                        child: (snapshot.data[index].avatar !=
+                                                null)
+                                            ? Image.network(
+                                                '${Constants.mainUrl}${snapshot.data[index].avatar}',
+                                                fit: BoxFit.cover)
+                                            : Image.network(
+                                                'https://icons-for-free.com/download-icon-man+person+profile+user+worker+icon-1320190557331309792_512.png',
+                                                fit: BoxFit.cover)),
                                   ),
                                   title: Text(snapshot.data[index].fullName)),
                             ),

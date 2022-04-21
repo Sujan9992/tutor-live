@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../modules/courses/controller/course_controller.dart';
 
 class DrawerMenu extends StatefulWidget {
@@ -25,22 +24,17 @@ class _DrawerMenuState extends State<DrawerMenu> {
           ),
           FutureBuilder(
             future: controller.apiRepositoryInterface.getEnrolledCourses(),
-            builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-              if (snapshot.hasData) {
-                return ListView.builder(
-                  shrinkWrap: true,
-                  physics: const BouncingScrollPhysics(),
-                  itemCount: snapshot.data!.length,
-                  itemBuilder: (BuildContext context, int index) => Card(
-                    child: ListTile(title: Text(snapshot.data![index]!.title)),
-                  ),
-                );
-              } else {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-            },
+            builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) =>
+                (snapshot.hasData)
+                    ? ListView.builder(
+                        shrinkWrap: true,
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: snapshot.data!.length,
+                        itemBuilder: (BuildContext context, int index) => Card(
+                            child: ListTile(
+                                title: Text(snapshot.data![index]!.title))),
+                      )
+                    : const Center(child: CircularProgressIndicator()),
           ),
         ],
       ),

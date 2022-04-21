@@ -1,7 +1,7 @@
 import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tutor_live/core/constants.dart';
+import '../../../core/constants.dart';
 
 import '../controller/course_controller.dart';
 
