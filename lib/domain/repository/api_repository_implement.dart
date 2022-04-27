@@ -14,7 +14,7 @@ class ApiRepositoryImplement extends ApiRepositoryInterface {
   static var client = http.Client();
 
   static Uri getMainUrl(String endpoint,
-      {String baseUrl = '192.168.1.66:8000'}) {
+      {String baseUrl = '192.168.1.78:8000'}) {
     var url = Uri.http((baseUrl), (endpoint), {'q': '{http}'});
     return url;
   }
@@ -32,7 +32,7 @@ class ApiRepositoryImplement extends ApiRepositoryInterface {
     if (result.statusCode == 200) {
       return loginResponseFromJson(result.body);
     } else {
-      return null;
+      throw Exception('Failed to load');
     }
   }
 
@@ -43,7 +43,7 @@ class ApiRepositoryImplement extends ApiRepositoryInterface {
     if (result.statusCode == 200) {
       return loginResponseFromJson(result.body);
     } else {
-      return null;
+      throw Exception('Unable to login');
     }
   }
 
@@ -62,7 +62,7 @@ class ApiRepositoryImplement extends ApiRepositoryInterface {
     if (result.statusCode == 201) {
       return loginResponseFromJson(result.body);
     } else {
-      return null;
+      throw Exception('Unable to register');
     }
   }
 
@@ -72,7 +72,7 @@ class ApiRepositoryImplement extends ApiRepositoryInterface {
     if (result.statusCode == 200) {
       return categoryFromJson(result.body);
     } else {
-      return null;
+      throw Exception('Failed to load');
     }
   }
 
@@ -83,7 +83,7 @@ class ApiRepositoryImplement extends ApiRepositoryInterface {
     if (result.statusCode == 200) {
       return coursesFromJson(result.body);
     } else {
-      return null;
+      throw Exception('Failed to load');
     }
   }
 
@@ -93,7 +93,7 @@ class ApiRepositoryImplement extends ApiRepositoryInterface {
     if (result.statusCode == 200) {
       return coursesFromJson(result.body);
     } else {
-      return null;
+      throw Exception('Failed to load');
     }
   }
 
@@ -107,7 +107,7 @@ class ApiRepositoryImplement extends ApiRepositoryInterface {
     if (result.statusCode == 200) {
       return coursesFromJson(result.body);
     } else {
-      return null;
+      throw Exception('Failed to load');
     }
   }
 
@@ -118,7 +118,7 @@ class ApiRepositoryImplement extends ApiRepositoryInterface {
     if (result.statusCode == 200) {
       return userFromJson(result.body);
     } else {
-      return null;
+      throw Exception('Failed to load');
     }
   }
 
@@ -128,7 +128,7 @@ class ApiRepositoryImplement extends ApiRepositoryInterface {
     if (result.statusCode == 200) {
       return usersFromJson(result.body);
     } else {
-      return null;
+      throw Exception('Failed to load');
     }
   }
 
@@ -139,7 +139,7 @@ class ApiRepositoryImplement extends ApiRepositoryInterface {
     if (result.statusCode == 200) {
       return usersFromJson(result.body);
     } else {
-      return null;
+      throw Exception('Failed to load');
     }
   }
 
@@ -149,7 +149,7 @@ class ApiRepositoryImplement extends ApiRepositoryInterface {
     if (result.statusCode == 200) {
       return scheduleFromJson(result.body);
     } else {
-      return null;
+      throw Exception('Failed to load');
     }
   }
 }

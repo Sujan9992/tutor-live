@@ -12,7 +12,5 @@ Future<void> main() async {
   boolValue ??= true;
   // reset the system's orientation to portrait
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-      .then((_) {
-    runApp(MyApp(toLoad: boolValue));
-  });
+      .then((_) => runApp(MyApp(toLoad: boolValue)));
 }
