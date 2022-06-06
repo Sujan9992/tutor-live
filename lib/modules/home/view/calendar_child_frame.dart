@@ -42,7 +42,8 @@ class CalendarChildFrame extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: FutureBuilder(
-                      future: controller.apiRepositoryInterface.getSchedules(),
+                      future: controller.apiRepositoryInterface
+                          .getEnrolledCoursesSchedules(),
                       builder: (BuildContext context,
                               AsyncSnapshot<dynamic> snapshot) =>
                           (snapshot.hasData)

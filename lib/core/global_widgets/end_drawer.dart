@@ -53,12 +53,9 @@ class _EndDrawerState extends State<EndDrawer> {
             ),
           ),
           buildCard(
-            Icons.logout,
-            'Logout',
-            () {
-              controller.logout();
-              Get.offAllNamed('/auth');
-            },
+            Icons.settings,
+            'Manage Course',
+            () {},
           ),
           buildCard(
             Icons.support_outlined,
@@ -75,9 +72,12 @@ class _EndDrawerState extends State<EndDrawer> {
       persistentFooterButtons: [
         Card(
           child: ListTile(
-            leading: const Icon(Icons.settings),
-            title: const Text('Settings'),
-            onTap: () {},
+            leading: const Icon(Icons.logout),
+            title: const Text('Logout'),
+            onTap: () {
+              controller.logout();
+              Get.offAllNamed('/auth');
+            },
           ),
         ),
       ],

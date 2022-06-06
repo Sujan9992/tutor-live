@@ -1,4 +1,8 @@
+import 'dart:io';
+import 'package:tutor_live/modules/courses/model/lesson.dart';
+
 import '../../modules/auth/model/user.dart';
+import '../../modules/courses/model/quizz.dart';
 import '../../modules/home/model/schedule.dart';
 import '../request/login_request.dart';
 import '../request/register_request.dart';
@@ -18,4 +22,10 @@ abstract class ApiRepositoryInterface {
   Future<List<User?>?> getTutorList();
   Future<List<User?>?> getTutorByCategory(String title);
   Future<List<Schedule?>?> getSchedules();
+  Future<List<Schedule?>?> getEnrolledCoursesSchedules();
+  // notworking
+  Future<void> createCourse(
+      String title, String description, String category, File image);
+  Future<List<Lesson?>?> getLessons(int courseId);
+  Future<List<Quizz?>?> getQuizz(int courseId);
 }

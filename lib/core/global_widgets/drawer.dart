@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../modules/courses/controller/course_controller.dart';
 
 class DrawerMenu extends StatefulWidget {
@@ -11,7 +12,6 @@ class DrawerMenu extends StatefulWidget {
 
 class _DrawerMenuState extends State<DrawerMenu> {
   final controller = Get.find<CourseController>();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,8 +31,18 @@ class _DrawerMenuState extends State<DrawerMenu> {
                         physics: const BouncingScrollPhysics(),
                         itemCount: snapshot.data!.length,
                         itemBuilder: (BuildContext context, int index) => Card(
-                            child: ListTile(
-                                title: Text(snapshot.data![index]!.title))),
+                          child: ListTile(
+                            title: Text(snapshot.data![index]!.title),
+                            onTap: () {
+                              Get.toNamed('/courseDetail', arguments: [
+                                snapshot.data![index]!.courseId,
+                                snapshot.data![index]!.title,
+                                snapshot.data![index]!.description,
+                                snapshot.data![index]!.category,
+                              ]);
+                            },
+                          ),
+                        ),
                       )
                     : const Center(child: CircularProgressIndicator()),
           ),
@@ -41,10 +51,12 @@ class _DrawerMenuState extends State<DrawerMenu> {
       persistentFooterButtons: [
         Card(
           child: ListTile(
-            leading: const Icon(Icons.add),
-            title: const Text('Create Course'),
-            onTap: () {},
-          ),
+              leading: const Icon(Icons.add),
+              title: const Text('Create Course'),
+              onTap: () {
+                Get.back();
+                Get.toNamed('/addCourse');
+              }),
         ),
       ],
     );

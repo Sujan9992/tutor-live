@@ -1,9 +1,13 @@
 import 'package:get/get.dart';
+import 'package:tutor_live/modules/courses/view/lesson_detail.dart';
+import 'package:tutor_live/modules/courses/view/quizz_page.dart';
 
 import '../main_binding.dart';
+import '../modules/add_course/add_course_page.dart';
 import '../modules/auth/controller/auth_binding.dart';
 import '../modules/auth/view/auth_screen.dart';
 import '../modules/courses/controller/course_bindings.dart';
+import '../modules/courses/view/course_details.dart';
 import '../modules/courses/view/course_frame.dart';
 import '../modules/home/controller/home_page_binding.dart';
 import '../modules/home/homepage.dart';
@@ -53,5 +57,9 @@ abstract class AppPages {
         CourseBinding(),
       ],
     ),
+    GetPage(name: Routes.addCourse, page: () => AddCourse()),
+    GetPage(name: Routes.courseDetail, page: () => CourseDetail()),
+    GetPage(name: Routes.lessonDetail, page: () => LessonDetail()),
+    GetPage(name: Routes.quizz, page: () => Quizz()),
   ];
 }

@@ -53,11 +53,18 @@ class CourseCategoryFrame extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ListTile(
-                          leading: Image.network(
-                            '${Constants.mainUrl}${controller.coursesList[index].image}',
-                            width: 80,
+                          leading: controller.coursesList[index].image == null
+                              ? Image.asset(
+                                  'assets/images/python_101.png',
+                                  width: 80,
+                                )
+                              : Image.network(
+                                  '${Constants.mainUrl}${controller.coursesList[index].image}',
+                                  width: 80,
+                                ),
+                          title: Text(
+                            controller.coursesList[index].title,
                           ),
-                          title: Text(controller.coursesList[index].title),
                         ),
                       ),
                     ),
@@ -82,10 +89,15 @@ class CourseCategoryFrame extends StatelessWidget {
                                       padding: const EdgeInsets.all(8.0),
                                       child: ListTile(
                                           onTap: () {},
-                                          leading: Image.network(
-                                            '${Constants.mainUrl}${snapshot.data[index].image}',
-                                            width: 80,
-                                          ),
+                                          leading: snapshot.data[index].image ==
+                                                  null
+                                              ? Image.asset(
+                                                  'assets/images/python_101.png',
+                                                  width: 80)
+                                              : Image.network(
+                                                  '${Constants.mainUrl}${snapshot.data[index].image}',
+                                                  width: 80,
+                                                ),
                                           title:
                                               Text(snapshot.data[index].title)),
                                     ),

@@ -15,6 +15,8 @@ class Courses {
     this.image,
     this.category,
     this.createdBy,
+    String? userId,
+    String? created_by,
   });
 
   int? courseId;
@@ -36,7 +38,7 @@ class Courses {
       );
 
   Map<String, dynamic> toJson() => {
-        "course_id": courseId,
+        // "course_id": courseId,
         "title": title,
         "keywords": keywords,
         "description": description,

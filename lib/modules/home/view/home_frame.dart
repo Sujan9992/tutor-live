@@ -44,11 +44,11 @@ class HomeFrame extends StatelessWidget {
             ],
           ),
         ),
-        Obx(
-          () => (controller.childTabIndex.value == 0)
-              ? Expanded(child: CalendarChildFrame())
-              : const SuggestionChildFrame(),
-        ),
+        Obx(() => (controller.childTabIndex.value == 0)
+            ? Expanded(child: CalendarChildFrame())
+            : const Expanded(
+                child: SuggestionChildFrame(),
+              )),
       ],
     );
   }
