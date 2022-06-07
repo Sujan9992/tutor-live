@@ -39,6 +39,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
                                 snapshot.data![index]!.title,
                                 snapshot.data![index]!.description,
                                 snapshot.data![index]!.category,
+                                snapshot.data![index]!.image,
                               ]);
                             },
                           ),

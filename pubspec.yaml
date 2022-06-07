@@ -25,6 +25,7 @@ dependencies:
   mockito: ^5.1.0
   build_runner: ^2.1.10
   image_picker: ^0.8.5+3
+  flutter_rating_bar: ^4.0.1
 
 dev_dependencies:
   flutter_native_splash: ^2.0.2

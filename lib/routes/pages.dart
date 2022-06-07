@@ -1,6 +1,12 @@
 import 'package:get/get.dart';
-import 'package:tutor_live/modules/courses/view/lesson_detail.dart';
-import 'package:tutor_live/modules/courses/view/quizz_page.dart';
+import '../Profile/user_profile.dart';
+import '../modules/chat/view/chat_details.dart';
+import '../modules/courses/view/course_update.dart';
+import '../modules/courses/view/manage_course.dart';
+import '../modules/courses/view/course_page.dart';
+import '../Profile/user_details_page.dart';
+import '../modules/courses/view/lesson_detail.dart';
+import '../modules/courses/view/quizz_page.dart';
 
 import '../main_binding.dart';
 import '../modules/add_course/add_course_page.dart';
@@ -61,5 +67,11 @@ abstract class AppPages {
     GetPage(name: Routes.courseDetail, page: () => CourseDetail()),
     GetPage(name: Routes.lessonDetail, page: () => LessonDetail()),
     GetPage(name: Routes.quizz, page: () => Quizz()),
+    GetPage(name: Routes.profile, page: () => UserDetails()),
+    GetPage(name: Routes.coursePage, page: () => CoursesPage()),
+    GetPage(name: Routes.userProfile, page: () => UserProfile()),
+    GetPage(name: Routes.manageCourse, page: () => ManageCourse()),
+    GetPage(name: Routes.updateCourse, page: () => UpdateCourse()),
+    GetPage(name: Routes.chatDetails, page: () => ChatDetails()),
   ];
 }

@@ -46,7 +46,6 @@ class CourseController extends GetxController {
       enrollLoading(true);
       apiRepositoryInterface.getEnrolledCourses().then((value) {
         enrolledCourseList(value);
-        print(value);
       });
     } finally {
       enrollLoading(false);

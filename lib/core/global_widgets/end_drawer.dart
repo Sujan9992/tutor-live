@@ -13,6 +13,10 @@ class EndDrawer extends StatefulWidget {
 
 class _EndDrawerState extends State<EndDrawer> {
   final controller = Get.find<AuthController>();
+  int id = 0;
+  String name = 'User';
+  String email = '';
+  String image = '';
 
   Widget buildCard(IconData leading, String text, Function() onTap) {
     return ListTile(
@@ -37,6 +41,10 @@ class _EndDrawerState extends State<EndDrawer> {
                 builder:
                     (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
                   if (snapshot.hasData) {
+                    id = snapshot.data.id;
+                    name = snapshot.data.fullName;
+                    email = snapshot.data.email;
+                    image = snapshot.data.avatar;
                     return Text(
                       snapshot.data.fullName ?? 'Null',
                       style: TextStyle(
@@ -53,9 +61,28 @@ class _EndDrawerState extends State<EndDrawer> {
             ),
           ),
           buildCard(
+            Icons.person,
+            'View Profile',
+            () {
+              Get.back();
+              Get.toNamed('/userProfile', arguments: [
+                id,
+                name,
+                email,
+                image,
+              ]);
+            },
+          ),
+          buildCard(
             Icons.settings,
             'Manage Course',
-            () {},
+            () {
+              Get.back();
+              Get.toNamed('/manageCourse', arguments: [
+                id,
+                name,
+              ]);
+            },
           ),
           buildCard(
             Icons.support_outlined,

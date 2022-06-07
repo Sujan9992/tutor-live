@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
 
 class NotificationFrame extends StatelessWidget {
-  const NotificationFrame({Key? key}) : super(key: key);
+  NotificationFrame({Key? key}) : super(key: key);
+  TimeOfDay time = const TimeOfDay(hour: 8, minute: 0);
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('NotificationFrame'),
+    return Column(
+      children: [
+        TimeOfDay.now() == time
+            ? const Card(
+                child: ListTile(
+                  trailing: Icon(Icons.notifications),
+                  title: Text('Class TIme'),
+                ),
+              )
+            : Container(),
+      ],
     );
   }
 }

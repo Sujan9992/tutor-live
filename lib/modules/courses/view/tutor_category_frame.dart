@@ -54,6 +54,14 @@ class TutorCategoryFrame extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: ListTile(
+                        onTap: () {
+                          Get.toNamed('/profile', arguments: [
+                            controller.tutorList[index]!.id,
+                            controller.tutorList[index]!.fullName,
+                            controller.tutorList[index]!.email,
+                            controller.tutorList[index]!.avatar,
+                          ]);
+                        },
                         leading: CircleAvatar(
                           radius: 30,
                           backgroundColor: Colors.white,
@@ -63,8 +71,7 @@ class TutorCategoryFrame extends StatelessWidget {
                                   ? Image.network(
                                       '${Constants.mainUrl}${controller.tutorList[index].avatar}',
                                       fit: BoxFit.cover)
-                                  : Image.network(
-                                      'https://icons-for-free.com/download-icon-man+person+profile+user+worker+icon-1320190557331309792_512.png',
+                                  : Image.asset('assets/images/images.jpg',
                                       fit: BoxFit.cover)),
                         ),
                         title: Text(controller.tutorList[index].fullName),
@@ -91,6 +98,14 @@ class TutorCategoryFrame extends StatelessWidget {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: ListTile(
+                                  onTap: () {
+                                    Get.toNamed('/profile', arguments: [
+                                      snapshot.data[index]!.id,
+                                      snapshot.data[index].fullName,
+                                      snapshot.data[index].email,
+                                      snapshot.data[index].avatar,
+                                    ]);
+                                  },
                                   leading: CircleAvatar(
                                     radius: 30,
                                     backgroundColor: Colors.white,
@@ -100,8 +115,8 @@ class TutorCategoryFrame extends StatelessWidget {
                                             ? Image.network(
                                                 '${Constants.mainUrl}${snapshot.data[index].avatar}',
                                                 fit: BoxFit.cover)
-                                            : Image.network(
-                                                'https://icons-for-free.com/download-icon-man+person+profile+user+worker+icon-1320190557331309792_512.png',
+                                            : Image.asset(
+                                                'assets/images/images.jpg',
                                                 fit: BoxFit.cover)),
                                   ),
                                   title: Text(snapshot.data[index].fullName)),

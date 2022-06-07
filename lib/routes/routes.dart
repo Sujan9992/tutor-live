@@ -11,6 +11,12 @@ abstract class Routes {
   static const String courses = '/courses';
   static const String addCourse = '/addCourse';
   static const String courseDetail = '/courseDetail';
+  static const String coursePage = '/coursePage';
   static const String lessonDetail = '/lessonDetail';
   static const String quizz = '/quizz';
+  static const String profile = '/profile';
+  static const String userProfile = '/userProfile';
+  static const String manageCourse = '/manageCourse';
+  static const String updateCourse = '/updateCourse';
+  static const String chatDetails = '/chatDetails';
 }

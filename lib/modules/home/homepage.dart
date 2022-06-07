@@ -117,8 +117,8 @@ class HomePage extends StatelessWidget {
           children: [
             HomeFrame(),
             CourseFrame(),
-            const NotificationFrame(),
-            const ChatFrame(),
+            NotificationFrame(),
+            ChatFrame(),
           ],
         ),
       ),

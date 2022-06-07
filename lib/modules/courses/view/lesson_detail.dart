@@ -44,10 +44,12 @@ class LessonDetail extends StatelessWidget {
               ),
               SizedBox(
                 width: double.infinity,
-                child: Image.network(
-                  '${Constants.mainUrl}$image',
-                  width: 80,
-                ),
+                child: image != null
+                    ? Image.network(
+                        '${Constants.mainUrl}$image',
+                        width: 80,
+                      )
+                    : Image.asset('assets/images/python 1.png'),
               ),
             ],
           ),

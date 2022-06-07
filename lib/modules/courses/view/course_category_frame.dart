@@ -53,6 +53,15 @@ class CourseCategoryFrame extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ListTile(
+                          onTap: () {
+                            Get.toNamed('/coursePage', arguments: [
+                              controller.coursesList[index]!.courseId,
+                              controller.coursesList[index]!.title,
+                              controller.coursesList[index]!.description,
+                              controller.coursesList[index]!.category,
+                              controller.coursesList[index]!.image,
+                            ]);
+                          },
                           leading: controller.coursesList[index].image == null
                               ? Image.asset(
                                   'assets/images/python_101.png',
@@ -88,7 +97,19 @@ class CourseCategoryFrame extends StatelessWidget {
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: ListTile(
-                                          onTap: () {},
+                                          onTap: () {
+                                            Get.toNamed('/coursePage',
+                                                arguments: [
+                                                  snapshot
+                                                      .data![index]!.courseId,
+                                                  snapshot.data![index]!.title,
+                                                  snapshot.data![index]!
+                                                      .description,
+                                                  snapshot
+                                                      .data![index]!.category,
+                                                  snapshot.data![index]!.image,
+                                                ]);
+                                          },
                                           leading: snapshot.data[index].image ==
                                                   null
                                               ? Image.asset(
